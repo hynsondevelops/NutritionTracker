@@ -32,6 +32,14 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+#Project specific gems
+#Nutrition data
+gem 'usda-nutrient-database'
+#For speeding up database imports
+gem 'activerecord-import'
+
+
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
