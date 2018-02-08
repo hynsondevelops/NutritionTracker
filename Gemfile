@@ -38,8 +38,8 @@ gem 'jbuilder', '~> 2.5'
 #for API calls
 gem 'rest-client'
 #React components
-gem "react_on_rails", "~> 6"
-
+gem "react_on_rails", "10.0.0"
+gem "webpacker", "~> 3.0"
 
 
 # Use Capistrano for deployment
