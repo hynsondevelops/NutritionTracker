@@ -1,0 +1,6 @@
+<%= render partial: "food_search" %>
+<% if @foods != nil %>
+	<% @foods.each do |food| %>
+		<p> <%= "#{food["name"]}, #{food["ndbno"]}" %> </p>
+	<% end %>
+<% end %>

@@ -6,6 +6,8 @@ git_source(:github) do |repo_name|
 end
 
 
+
+gem 'activerecord', '~> 5.0.6'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.6'
 # Use sqlite3 as the database for Active Record
@@ -33,10 +35,10 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 
 #Project specific gems
-#Nutrition data
-gem 'usda-nutrient-database'
-#For speeding up database imports
-gem 'activerecord-import'
+#for API calls
+gem 'rest-client'
+#React components
+gem "react_on_rails", "~> 6"
 
 
 

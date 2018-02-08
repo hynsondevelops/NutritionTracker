@@ -1,0 +1,8 @@
+<div id="food_search_box">
+	<%= form_tag('/home') do %>
+		<%= label_tag :food_name %>  
+		<%= text_field_tag :food_name, params[:food_name] %>
+	  	<div><%= submit_tag 'Save' %></div>
+
+	<% end %>
+</div>
