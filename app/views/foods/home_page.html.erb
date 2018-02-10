@@ -1,6 +1,12 @@
-<%= render partial: "food_search" %>
-<% if @foods != nil %>
-	<% @foods.each do |food| %>
-		<p> <%= "#{food["name"]}, #{food["ndbno"]}" %> </p>
-	<% end %>
-<% end %>
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ReactOnRailsWithWebpacker</title>
+    <%= csrf_meta_tags %>
+    <%= javascript_pack_tag 'tracker-bundle' %>
+  </head>
+  	<%= render partial: "food_search" %>
+
+	<%= react_component("Tracker", props: @tracker_props, prerender: false) %>
+</html>
