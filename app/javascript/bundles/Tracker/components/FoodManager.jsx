@@ -4,7 +4,7 @@ import FoodSelector from './FoodSelector.jsx';
 
 export default class FoodManager extends React.Component {
   static propTypes = {
-  	 searchedFoods: PropTypes.string
+  	 searchedFoods: PropTypes.array
   };
 
   /**

@@ -4,7 +4,7 @@ import FoodRow from './FoodRow.jsx';
 
 export default class FoodSelector extends React.Component {
   static propTypes = {
-  	 searchedFoods: PropTypes.string
+  	 searchedFoods: PropTypes.array
   };
 
   /**
@@ -19,16 +19,21 @@ export default class FoodSelector extends React.Component {
   }
 
   render() {
+    const foodRows = this.props.searchedFoods.map((food) =>
+        <FoodRow key={food["ndbno"]} searchedFood={food} />
+      );
     return (
-    	<table class="table">
+    	<table className="table">
         <thead>
           <tr>
             <th scope="col">Name</th>
+            <th scope="col">Amount</th>
             <th scope="col">Serving Size</th>
+            <th scope="col">Calories</th>
           </tr>
         </thead>
         <tbody>
-          < FoodRow searchedFood={this.props.searchedFoods[0]} />
+          {foodRows }
           
         </tbody>
       </table>

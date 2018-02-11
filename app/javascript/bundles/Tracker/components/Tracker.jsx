@@ -5,7 +5,7 @@ import FoodManager from './FoodManager';
 
 export default class Tracker extends React.Component {
   static propTypes = {
-  	searchedFoods: PropTypes.string
+  	searchedFoods: PropTypes.array
   };
 
   /**
@@ -21,8 +21,8 @@ export default class Tracker extends React.Component {
 
   render() {
     return (
-    	<div class="row">
-	    	<div class="col-md-6">
+    	<div className="row">
+	    	<div className="col-md-6">
 				<FoodManager searchedFoods={this.props.searchedFoods} />
 			</div> 
 		</div>
