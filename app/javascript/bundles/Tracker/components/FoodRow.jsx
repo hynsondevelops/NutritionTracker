@@ -20,6 +20,7 @@ export default class FoodManager extends React.Component {
   }
 
   render() {
+    console.log(this.props.searchedFood)
   	var findingEnergy = true;
   	var i = 0;
   	var caloriesTemp;

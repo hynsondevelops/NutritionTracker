@@ -6,7 +6,6 @@
     <%= csrf_meta_tags %>
     <%= javascript_pack_tag 'tracker-bundle' %>
   </head>
-  	<%= render partial: "food_search" %>
 
 	<%= react_component("Tracker", props: @tracker_props, prerender: false) %>
 </html>
