@@ -27,7 +27,32 @@ export default class FoodSelector extends React.Component {
 
     initialAjaxSuccess = (data) => {
         this.setState({searchedFoods: []})
-        alert(data.list.item[0])
+        if (data.list == null){
+            let placeholderFood = {
+              "ndbno": "0",
+              "name": "Sorry, no results for that search.",
+              "nutrients": [
+                {
+                  "nutrient_id": "208",
+                  "name": "Energy",
+                  "derivation": "LCCS",
+                  "group": "Proximates",
+                  "unit": "kcal",
+                  "value": "N/A",
+                  "measures": [
+                    {
+                      "label": "ONZ",
+                      "eqv": 0,
+                      "eunit": "g",
+                      "qty": 0,
+                      "value": "0"
+                    }
+                  ]
+                }
+                ]
+            }
+            this.setState({searchedFoods: [placeholderFood]})
+        }
         for (let i = 0; i < data.list.item.length; i++){
             let APIURL = "https://api.nal.usda.gov/ndb/reports/?ndbno=" + data.list.item[i].ndbno + "&type=f&format=json&api_key=hyMAaC37dIT57p36cBZ1Sn6tK5XYfnOLP4IaNSs7"
             $.get({

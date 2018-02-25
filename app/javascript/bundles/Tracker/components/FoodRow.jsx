@@ -20,7 +20,6 @@ export default class FoodManager extends React.Component {
   }
 
   render() {
-    console.log(this.props.searchedFood)
   	var findingEnergy = true;
   	var i = 0;
   	var caloriesTemp;
@@ -38,6 +37,7 @@ export default class FoodManager extends React.Component {
   	    }
   	    i+=1;
   	}
+    console.log(this.props.searchedFood)
   	const calories = caloriesTemp;
   	const options = servingSizesTemp;
   	const defaultOption = options[0];
@@ -53,4 +53,3 @@ export default class FoodManager extends React.Component {
     );
   }
 }
-
