@@ -24,18 +24,26 @@ export default class FoodManager extends React.Component {
   	var i = 0;
   	var caloriesTemp;
   	var servingSizesTemp = [];
+    console.log(this.props.searchedFood)
   	while (findingEnergy)
   	{
-  	    if (this.props.searchedFood["nutrients"][i]["unit"] == "kcal")
-  	    {
-  	    	caloriesTemp = this.props.searchedFood["nutrients"][i]["value"];
-  	    	for (var j = 0; j < this.props.searchedFood["nutrients"][i]["measures"].length; j++)
-  	    	{	
-  	    		servingSizesTemp.push(this.props.searchedFood["nutrients"][i]["measures"][j]["label"]);
-  	    	}
-  	    	findingEnergy = false;
-  	    }
-  	    i+=1;
+      if (i < this.props.searchedFood["nutrients"].length){
+        if (this.props.searchedFood["nutrients"][i]["unit"] == "kcal")
+        {
+        	caloriesTemp = this.props.searchedFood["nutrients"][i]["value"];
+        	for (var j = 0; j < this.props.searchedFood["nutrients"][i]["measures"].length; j++)
+        	{	
+        		servingSizesTemp.push(this.props.searchedFood["nutrients"][i]["measures"][j]["label"]);
+        	}
+        	findingEnergy = false;
+        }
+        i+=1;
+      }
+      else {
+        caloriesTemp = 0
+        servingSizesTemp.push()
+        findingEnergy = false;
+      }
   	}
     console.log(this.props.searchedFood)
   	const calories = caloriesTemp;
