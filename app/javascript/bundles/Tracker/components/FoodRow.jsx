@@ -19,19 +19,32 @@ export default class FoodManager extends React.Component {
     this.state = {  };
   }
 
+  handleAddFood = () => {
+    //AJAX call to create a food database entry in user's daily foods
+    $.ajax({
+      url: '/foods',
+      type: 'POST',
+      data: this.props.searchedFood,
+    }).success(function(data){
+      //rails controller reroutes back to home
+    });
+  }
+
   render() {
-  	var findingEnergy = true;
-  	var i = 0;
-  	var caloriesTemp;
-  	var servingSizesTemp = [];
-    console.log(this.props.searchedFood)
+    //variables for finding calories and serving sizes
+  	let findingEnergy = true;
+  	let i = 0;
+  	let caloriesTemp;
+  	let servingSizesTemp = [];
+
   	while (findingEnergy)
   	{
-      if (i < this.props.searchedFood["nutrients"].length){
+      if (i < Object.keys(this.props.searchedFood["nutrients"]).length){
+        //looking for energy units of kcal
         if (this.props.searchedFood["nutrients"][i]["unit"] == "kcal")
         {
         	caloriesTemp = this.props.searchedFood["nutrients"][i]["value"];
-        	for (var j = 0; j < this.props.searchedFood["nutrients"][i]["measures"].length; j++)
+        	for (let j = 0; j < Object.keys(this.props.searchedFood["nutrients"][i]["measures"]).length; j++)
         	{	
         		servingSizesTemp.push(this.props.searchedFood["nutrients"][i]["measures"][j]["label"]);
         	}
@@ -39,24 +52,26 @@ export default class FoodManager extends React.Component {
         }
         i+=1;
       }
+      //food didn't have data on kcals
       else {
         caloriesTemp = 0
         servingSizesTemp.push()
         findingEnergy = false;
       }
   	}
-    console.log(this.props.searchedFood)
+    //variables to be used in view
   	const calories = caloriesTemp;
   	const options = servingSizesTemp;
   	const defaultOption = options[0];
     return (
 
-		<tr>
+		<tr>  
             <th scope="row">{this.props.searchedFood["name"]}</th>
             <td>{this.props.searchedFood["nutrients"][0]["value"]}</td>
             <td><Dropdown options={options} onChange={this._onSelect} value={defaultOption} placeholder="Select an option" /></td>
             <td>{calories}</td>
-
+              <input type="submit" onClick={this.handleAddFood} />
+          
         </tr>
     );
   }

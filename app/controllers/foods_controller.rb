@@ -22,7 +22,13 @@ class FoodsController < ApplicationController
 
 			
 		# end
-		@tracker_props = {}
+		dailyFoods = Food.all
+		print(dailyFoods)
+		@tracker_props = {dailyDiet: dailyFoods}
 
+	end
+	def create
+		@food = Food.create(name: params)
+		redirect_to "/home"
 	end
 end

@@ -12,7 +12,6 @@ export default class FoodManager extends React.Component {
    */
   constructor(props) {
     super(props);
-    console.log(this.props)
 
     // How to set initial state in ES6 class syntax
     // https://facebook.github.io/react/docs/reusable-components.html#es6-classes

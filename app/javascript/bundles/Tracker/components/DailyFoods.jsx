@@ -15,7 +15,7 @@ export default class FoodSelector extends React.Component {
 
     // How to set initial state in ES6 class syntax
     // https://facebook.github.io/react/docs/reusable-components.html#es6-classes
-    this.state = {dailyDiet: []};
+    this.state = {};
   }
 
   getInitialState(){
@@ -23,7 +23,7 @@ export default class FoodSelector extends React.Component {
   }
 
   render() {
-    const foodRows = this.state.dailyDiet.map((food) =>
+    const foodRows = this.props.dailyDiet.map((food) =>
         <FoodRow key={food["ndbno"]} searchedFood={food} />
       );
     return (

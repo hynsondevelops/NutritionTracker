@@ -27,6 +27,7 @@ export default class FoodSelector extends React.Component {
 
     initialAjaxSuccess = (data) => {
         this.setState({searchedFoods: []})
+        //no result found
         if (data.list == null){
             let placeholderFood = {
               "ndbno": "0",
@@ -53,6 +54,7 @@ export default class FoodSelector extends React.Component {
             }
             this.setState({searchedFoods: [placeholderFood]})
         }
+        //makes AJAX calls for detailed info on all foods found in results
         for (let i = 0; i < data.list.item.length; i++){
             let APIURL = "https://api.nal.usda.gov/ndb/reports/?ndbno=" + data.list.item[i].ndbno + "&type=f&format=json&api_key=hyMAaC37dIT57p36cBZ1Sn6tK5XYfnOLP4IaNSs7"
             $.get({
@@ -71,27 +73,16 @@ export default class FoodSelector extends React.Component {
 
 
     handleChange = (event) => {
-        console.log("Setting state" + event.target.value)
         this.setState({searchString: event.target.value});
+        //making call to USDA database 
         let APIURL = ("https://api.nal.usda.gov/ndb/search/?format=json&q=" + event.target.value + "&sort=n&max=25&offset=0&api_key=hyMAaC37dIT57p36cBZ1Sn6tK5XYfnOLP4IaNSs7")
-        console.log(APIURL)
         $.getJSON({
             url:APIURL, 
             success: this.initialAjaxSuccess
         })
     }
 
-    handleSubmit = (event) => {
-        alert(this.state.searchString)
-        let APIURL = ("https://api.nal.usda.gov/ndb/search/?format=json&q=" + this.state.searchString + "&sort=n&max=25&offset=0&api_key=hyMAaC37dIT57p36cBZ1Sn6tK5XYfnOLP4IaNSs7")
-        let response = $.ajax(url: APIURL)
-        console.log(response['responseJSON'])
-        event.preventDefault();
-
-    }
-
     render() {
-        console.log(this.state.searchedFoods)
       const foodRows = this.state.searchedFoods.map((food) =>
           <FoodRow key={food["ndbno"]} searchedFood={food} />
         );
@@ -121,4 +112,4 @@ export default class FoodSelector extends React.Component {
       </div>
     );
     }
-    }
+}
