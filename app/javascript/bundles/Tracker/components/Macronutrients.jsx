@@ -32,6 +32,55 @@ export default class Macronutrients extends React.Component {
       fatTotal += parseFloat(this.props.dailyDiet[i][0].nutrients[2].value) * parseFloat(this.props.dailyDiet[i][1])
       carbTotal += parseFloat(this.props.dailyDiet[i][0].nutrients[3].value) * parseFloat(this.props.dailyDiet[i][1])
     }
+    let chartData = [
+      {
+        value: fatTotal,
+        color:"#F7464A",
+        highlight: "#FF5A5E",
+        label: "Fat"
+      },
+      {
+        value: proteinTotal,
+        color: "#46BFBD",
+        highlight: "#5AD3D1",
+        label: "Protein"
+      },
+      {
+        value: carbTotal,
+        color: "#FDB45C",
+        highlight: "#FFC870",
+        label: "Carbohydrates"
+      }
+    ]
+    let chartOptions = {
+      //Boolean - Whether we should show a stroke on each segment
+      segmentShowStroke : true,
+
+      //String - The colour of each segment stroke
+      segmentStrokeColor : "#fff",
+
+      //Number - The width of each segment stroke
+      segmentStrokeWidth : 2,
+
+      //Number - The percentage of the chart that we cut out of the middle
+      percentageInnerCutout : 0, // This is 0 for Pie charts
+
+      //Number - Amount of animation steps
+      animationSteps : 100,
+
+      //String - Animation easing effect
+      animationEasing : "easeOutBounce",
+
+      //Boolean - Whether we animate the rotation of the Doughnut
+      animateRotate : true,
+
+      //Boolean - Whether we animate scaling the Doughnut from the centre
+      animateScale : false,
+        //String - A legend template
+        legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"><%if(segments[i].label){%><%=segments[i].label%><%}%></span></li><%}%></ul>"
+    }
+    let PieChart = require("react-chartjs").Pie;
+
     const calorie = calorieTotal;
     const carb = carbTotal;
     const protein = proteinTotal;
@@ -42,8 +91,8 @@ export default class Macronutrients extends React.Component {
         <h3> Protein: {protein} g</h3>
         <h3> Fat: {fat} g</h3>
         <h3> Carbohydrates: {carb} g</h3>
+        <PieChart data={chartData} options={chartOptions} width="600" height="250"/>
       </div>
-    
 
     );
   }

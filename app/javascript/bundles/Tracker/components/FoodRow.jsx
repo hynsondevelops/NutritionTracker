@@ -36,16 +36,23 @@ export default class FoodRow extends React.Component {
     });
   }
 
+  quantityFieldUpdate = (event) => {
+    this.setState({quantity: event.target.value})
+  }
+
   quantityUpdate = (event) => {
-    console.log(this.state.searchedFood)
-    //AJAX call to update a food portion database entry in user's daily foods
-    $.ajax({
-      url: '/food_portions',
-      type: 'PATCH',
-      data: {food: this.state.searchedFood, quantity: event.target.value},
-    }).success(function(data){
-      //rails controller reroutes back to home
-    });
+    console.log(event.target.value[event.target.value.length - 1] == "A")
+    console.log(event.key)
+    if (event.key == "Enter") {
+      //AJAX call to update a food portion database entry in user's daily foods
+      $.ajax({
+        url: '/food_portions',
+        type: 'PATCH',
+        data: {food: this.state.searchedFood, quantity: event.target.value},
+      }).success(function(data){
+        //rails controller reroutes back to home
+      });
+    }
   }
 
   render() {
@@ -93,7 +100,7 @@ export default class FoodRow extends React.Component {
 
 		<tr>  
             <th scope="row">{this.state.searchedFood["name"]}</th>
-            <td><input type="text" value={this.state.quantity} onChange={this.quantityUpdate} /></td>
+            <td><input type="text" value={this.state.quantity} onChange={this.quantityFieldUpdate} onKeyDown={this.quantityUpdate} /></td>
             <td><Dropdown options={options} onChange={this._onSelect} value={defaultOption} placeholder="Select an option" /></td>
             <td>{calories}</td>
             {AddFoodButton}
@@ -101,4 +108,5 @@ export default class FoodRow extends React.Component {
     );
   }
 }
+
 

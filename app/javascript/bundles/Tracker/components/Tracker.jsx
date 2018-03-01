@@ -41,6 +41,8 @@ export default class Tracker extends React.Component {
   }
 
   render() {
+    var LineChart = require("react-chartjs").Line;
+
     return (
       <div>
       	<div className="row">
