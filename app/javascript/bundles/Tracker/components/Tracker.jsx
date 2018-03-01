@@ -21,15 +21,21 @@ export default class Tracker extends React.Component {
     // How to set initial state in ES6 class syntax
     // https://facebook.github.io/react/docs/reusable-components.html#es6-classes
     //reformating food to match USDA format
-    let JSONfoods = []
-    for (let i = 0; i < Object.keys(this.props.dailyDiet).length; i++)
-    {
-      let jsonReady = this.props.dailyDiet[i].name.replace(/=>/g, ":")
-      let JSONfood = JSON.parse(jsonReady)
-      JSONfoods.push(JSONfood)
+    if (Object.keys(this.props.dailyDiet).length > 0){
+      let JSONfoods = []
+      for (let i = 0; i < Object.keys(this.props.dailyDiet).length; i++)
+      {
+        let jsonReady = this.props.dailyDiet[i].data.replace(/=>/g, ":")
+        let JSONfood = JSON.parse(jsonReady)
+        JSONfoods.push(JSONfood)
+      }
+      this.state = {dailyDiet: JSONfoods};
+      console.log(JSONfoods)
     }
-    this.state = {dailyDiet: JSONfoods};
-    console.log(JSONfoods)
+    else
+    {
+      this.state = {dailyDiet: []}
+    }
   }
 
   render() {

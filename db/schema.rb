@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180225222230) do
+ActiveRecord::Schema.define(version: 20180301050746) do
 
   create_table "active_nutrition_migrations", force: :cascade do |t|
     t.integer  "sequence_no"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20180225222230) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "data"
   end
 
 end

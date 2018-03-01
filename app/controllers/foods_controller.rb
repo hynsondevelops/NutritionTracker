@@ -28,7 +28,8 @@ class FoodsController < ApplicationController
 
 	end
 	def create
-		@food = Food.create(name: params)
+		#make food name validations on uniqueness
+		@food = Food.create(name: params[:name], data: params)
 		redirect_to "/home"
 	end
 end
