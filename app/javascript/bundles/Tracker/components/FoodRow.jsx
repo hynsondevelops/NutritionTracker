@@ -41,17 +41,20 @@ export default class FoodRow extends React.Component {
   }
 
   quantityUpdate = (event) => {
-    console.log(event.target.value[event.target.value.length - 1] == "A")
-    console.log(event.key)
     if (event.key == "Enter") {
       //AJAX call to update a food portion database entry in user's daily foods
-      $.ajax({
-        url: '/food_portions',
-        type: 'PATCH',
-        data: {food: this.state.searchedFood, quantity: event.target.value},
-      }).success(function(data){
-        //rails controller reroutes back to home
-      });
+      if (this.props.searchOrDaily){
+        this.handleAddFood()
+      }
+      else {
+        $.ajax({
+          url: '/food_portions',
+          type: 'PATCH',
+          data: {food: this.state.searchedFood, quantity: event.target.value},
+        }).success(function(data){
+          //rails controller reroutes back to home
+        });
+      }
     }
   }
 
