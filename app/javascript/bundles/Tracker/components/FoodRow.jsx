@@ -14,7 +14,7 @@ export default class FoodRow extends React.Component {
    */
   constructor(props) {
     super(props);
-
+    console.log(this.props.searchedFood)
     // How to set initial state in ES6 class syntax
     // https://facebook.github.io/react/docs/reusable-components.html#es6-classes
     if (this.props.searchOrDaily){
@@ -31,13 +31,21 @@ export default class FoodRow extends React.Component {
       url: '/food_portions',
       type: 'POST',
       data: {food: this.state.searchedFood, quantity: this.state.quantity},
-    }).success(function(data){
+    }).success(function(data){ 
       //rails controller reroutes back to home
     });
   }
 
   quantityUpdate = (event) => {
-    this.setState({quantity: parseFloat(event.target.value)})
+    console.log(this.state.searchedFood)
+    //AJAX call to update a food portion database entry in user's daily foods
+    $.ajax({
+      url: '/food_portions',
+      type: 'PATCH',
+      data: {food: this.state.searchedFood, quantity: event.target.value},
+    }).success(function(data){
+      //rails controller reroutes back to home
+    });
   }
 
   render() {
@@ -49,6 +57,7 @@ export default class FoodRow extends React.Component {
     <input type="submit" onClick={this.handleAddFood} />
 
     let AddFoodButtonTemp = ""
+    //search result
     if (this.props.searchOrDaily){
       AddFoodButtonTemp = <input type="submit" value="Add" onClick={this.handleAddFood} />
     }
@@ -92,3 +101,4 @@ export default class FoodRow extends React.Component {
     );
   }
 }
+

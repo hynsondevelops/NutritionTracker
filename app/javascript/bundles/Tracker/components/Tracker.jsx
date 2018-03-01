@@ -27,6 +27,8 @@ export default class Tracker extends React.Component {
       {
         let jsonReady = this.props.dailyDiet[i][0].data.replace(/=>/g, ":")
         let JSONfood = JSON.parse(jsonReady)
+        JSONfood.food_id = this.props.dailyDiet[i][0].id
+        JSONfood.food_portion_id = this.props.dailyDiet[i][2]
         JSONfoods.push([JSONfood, this.props.dailyDiet[i][1]])
       }
       this.state = {dailyDiet: JSONfoods};

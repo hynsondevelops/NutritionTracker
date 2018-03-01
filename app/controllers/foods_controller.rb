@@ -25,7 +25,7 @@ class FoodsController < ApplicationController
 		dailyFoods = []
 		dailyFoodPortions = FoodPortion.all
 		dailyFoodPortions.each do |portion|
-			dailyFoods.push([portion.food, portion.quantity])
+			dailyFoods.push([portion.food, portion.quantity, portion.id])
 		end
 		print(dailyFoods)
 		@tracker_props = {dailyDiet: dailyFoods}
