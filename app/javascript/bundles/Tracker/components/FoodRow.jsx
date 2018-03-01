@@ -3,9 +3,10 @@ import React from 'react';
 import Dropdown from 'react-dropdown';
 
 
-export default class FoodManager extends React.Component {
+export default class FoodRow extends React.Component {
   static propTypes = {
   	 searchedFood: PropTypes.object,
+     searchOrDaily: PropTypes.bool, //true for search result, false for daily food
   };
 
   /**
@@ -36,6 +37,12 @@ export default class FoodManager extends React.Component {
   	let i = 0;
   	let caloriesTemp;
   	let servingSizesTemp = [];
+    <input type="submit" onClick={this.handleAddFood} />
+
+    let AddFoodButtonTemp = ""
+    if (this.props.searchOrDaily){
+      AddFoodButtonTemp = <input type="submit" value="Add" onClick={this.handleAddFood} />
+    }
 
   	while (findingEnergy)
   	{
@@ -63,6 +70,7 @@ export default class FoodManager extends React.Component {
   	const calories = caloriesTemp;
   	const options = servingSizesTemp;
   	const defaultOption = options[0];
+    const AddFoodButton = AddFoodButtonTemp;
     return (
 
 		<tr>  
@@ -70,8 +78,7 @@ export default class FoodManager extends React.Component {
             <td>{this.props.searchedFood["nutrients"][0]["value"]}</td>
             <td><Dropdown options={options} onChange={this._onSelect} value={defaultOption} placeholder="Select an option" /></td>
             <td>{calories}</td>
-              <input type="submit" onClick={this.handleAddFood} />
-          
+            {AddFoodButton}
         </tr>
     );
   }

@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import FoodRow from './FoodRow.jsx';
 
-export default class FoodSelector extends React.Component {
+export default class DailyFoods extends React.Component {
   static propTypes = {
   	 dailyDiet: PropTypes.array
   };
@@ -22,9 +22,10 @@ export default class FoodSelector extends React.Component {
       return {dailyDiet: this.props.dailyDiet};
   }
 
+
   render() {
     const foodRows = this.props.dailyDiet.map((food) =>
-        <FoodRow key={food["ndbno"]} searchedFood={food} />
+        <FoodRow key={food["ndbno"]} searchedFood={food} searchOrDaily={false}/>
       );
     return (
     	<table className="table">
@@ -38,6 +39,7 @@ export default class FoodSelector extends React.Component {
         </thead>
         <tbody>
           {foodRows }
+
           
         </tbody>
       </table>

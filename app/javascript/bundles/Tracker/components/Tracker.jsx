@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import FoodManager from './FoodManager';
 import DailyFoods from './DailyFoods';
+import Macronutrients from './Macronutrients';
 
 
 export default class Tracker extends React.Component {
@@ -27,19 +28,25 @@ export default class Tracker extends React.Component {
       JSONfoods.push(JSONfood)
     }
     this.state = {dailyDiet: JSONfoods};
+    console.log(JSONfoods)
   }
 
   render() {
     return (
-    	<div className="row">
-        <div className="col-md-6">
-				  <FoodManager searchedFoods={this.props.searchedFoods} />
-			  </div> 
-        <div className="col-md-6">
-          <DailyFoods dailyDiet={this.state.dailyDiet} />
-        </div> 
-		</div>
-      
+      <div>
+      	<div className="row">
+  				  <FoodManager searchedFoods={this.props.searchedFoods} />
+  		  </div>
+        <div className="row">
+            <DailyFoods dailyDiet={this.state.dailyDiet} />
+        </div>
+        <div className="row">
+          <Macronutrients dailyDiet={this.state.dailyDiet} />
+        </div>
+      </div>
+
+    
+
     );
   }
 }

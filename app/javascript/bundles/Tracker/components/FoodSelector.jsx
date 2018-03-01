@@ -84,7 +84,7 @@ export default class FoodSelector extends React.Component {
 
     render() {
       const foodRows = this.state.searchedFoods.map((food) =>
-          <FoodRow key={food["ndbno"]} searchedFood={food} />
+          <FoodRow key={food["ndbno"]} searchedFood={food} searchOrDaily={true} />
         );
     return (
         <div>
