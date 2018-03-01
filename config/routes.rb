@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   get 'home', to: "foods#home_page"
   post 'home', to: "foods#home_page"
   resource :foods
+  resource :food_portions
 end

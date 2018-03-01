@@ -27,10 +27,10 @@ export default class Macronutrients extends React.Component {
     let proteinTotal = 0;
     let fatTotal = 0;
     for (let i = 0; i < Object.keys(this.props.dailyDiet).length; i++){
-      calorieTotal += parseFloat(this.props.dailyDiet[i].nutrients[0].value)
-      proteinTotal += parseFloat(this.props.dailyDiet[i].nutrients[1].value)
-      fatTotal += parseFloat(this.props.dailyDiet[i].nutrients[2].value)
-      carbTotal += parseFloat(this.props.dailyDiet[i].nutrients[3].value)
+      calorieTotal += parseFloat(this.props.dailyDiet[i][0].nutrients[0].value) * parseFloat(this.props.dailyDiet[i][1])
+      proteinTotal += parseFloat(this.props.dailyDiet[i][0].nutrients[1].value) * parseFloat(this.props.dailyDiet[i][1])
+      fatTotal += parseFloat(this.props.dailyDiet[i][0].nutrients[2].value) * parseFloat(this.props.dailyDiet[i][1])
+      carbTotal += parseFloat(this.props.dailyDiet[i][0].nutrients[3].value) * parseFloat(this.props.dailyDiet[i][1])
     }
     const calorie = calorieTotal;
     const carb = carbTotal;

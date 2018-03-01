@@ -17,18 +17,27 @@ export default class FoodRow extends React.Component {
 
     // How to set initial state in ES6 class syntax
     // https://facebook.github.io/react/docs/reusable-components.html#es6-classes
-    this.state = {  };
+    if (this.props.searchOrDaily){
+      this.state = {searchedFood: this.props.searchedFood, quantity: 1}
+    }
+    else{
+      this.state = {searchedFood: this.props.searchedFood[0], quantity: this.props.searchedFood[1] };
+    }
   }
 
   handleAddFood = () => {
     //AJAX call to create a food database entry in user's daily foods
     $.ajax({
-      url: '/foods',
+      url: '/food_portions',
       type: 'POST',
-      data: this.props.searchedFood,
+      data: {food: this.state.searchedFood, quantity: this.state.quantity},
     }).success(function(data){
       //rails controller reroutes back to home
     });
+  }
+
+  quantityUpdate = (event) => {
+    this.setState({quantity: parseFloat(event.target.value)})
   }
 
   render() {
@@ -46,14 +55,14 @@ export default class FoodRow extends React.Component {
 
   	while (findingEnergy)
   	{
-      if (i < Object.keys(this.props.searchedFood["nutrients"]).length){
+      if (i < Object.keys(this.state.searchedFood["nutrients"]).length){
         //looking for energy units of kcal
-        if (this.props.searchedFood["nutrients"][i]["unit"] == "kcal")
+        if (this.state.searchedFood["nutrients"][i]["unit"] == "kcal")
         {
-        	caloriesTemp = this.props.searchedFood["nutrients"][i]["value"];
-        	for (let j = 0; j < Object.keys(this.props.searchedFood["nutrients"][i]["measures"]).length; j++)
+        	caloriesTemp = parseFloat(this.state.searchedFood["nutrients"][i]["value"]);
+        	for (let j = 0; j < Object.keys(this.state.searchedFood["nutrients"][i]["measures"]).length; j++)
         	{	
-        		servingSizesTemp.push(this.props.searchedFood["nutrients"][i]["measures"][j]["label"]);
+        		servingSizesTemp.push(this.state.searchedFood["nutrients"][i]["measures"][j]["label"]);
         	}
         	findingEnergy = false;
         }
@@ -67,15 +76,15 @@ export default class FoodRow extends React.Component {
       }
   	}
     //variables to be used in view
-  	const calories = caloriesTemp;
+  	const calories = caloriesTemp * this.state.quantity;
   	const options = servingSizesTemp;
   	const defaultOption = options[0];
     const AddFoodButton = AddFoodButtonTemp;
     return (
 
 		<tr>  
-            <th scope="row">{this.props.searchedFood["name"]}</th>
-            <td>{this.props.searchedFood["nutrients"][0]["value"]}</td>
+            <th scope="row">{this.state.searchedFood["name"]}</th>
+            <td><input type="text" value={this.state.quantity} onChange={this.quantityUpdate} /></td>
             <td><Dropdown options={options} onChange={this._onSelect} value={defaultOption} placeholder="Select an option" /></td>
             <td>{calories}</td>
             {AddFoodButton}

@@ -90,7 +90,7 @@ export default class FoodSelector extends React.Component {
         <div>
       <form onSubmit={this.handleSubmit}>
         <label>
-          Name:
+          Search:
           <input type="text" value={this.state.value} onChange={this.handleChange} />
         </label>
         <input type="submit" value="Submit" />

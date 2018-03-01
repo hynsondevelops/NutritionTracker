@@ -10,12 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180301050746) do
+ActiveRecord::Schema.define(version: 20180301051857) do
 
   create_table "active_nutrition_migrations", force: :cascade do |t|
     t.integer  "sequence_no"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "food_portions", force: :cascade do |t|
+    t.integer  "food_id"
+    t.decimal  "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "foods", force: :cascade do |t|

@@ -25,8 +25,8 @@ export default class Micronutrients extends React.Component {
     let micros = [];
     //0-3 are calories and macros so skip them
     for (let i = 0; i < Object.keys(this.props.dailyDiet).length; i++){
-    	for (let j = 4; j < Object.keys(this.props.dailyDiet[i].nutrients).length; j++){
-      		micros.push(<h3> {this.props.dailyDiet[i].nutrients[j].name}: {this.props.dailyDiet[i].nutrients[j].value} {this.props.dailyDiet[i].nutrients[j].unit} </h3>)
+    	for (let j = 4; j < Object.keys(this.props.dailyDiet[i][0].nutrients).length; j++){
+      		micros.push(<h3> {this.props.dailyDiet[i][0].nutrients[j].name}: {parseFloat(this.props.dailyDiet[i][0].nutrients[j].value) * parseFloat(this.props.dailyDiet[i][1])} {this.props.dailyDiet[i][0].nutrients[j].unit} </h3>)
       	}
     }
    	const micro = micros
