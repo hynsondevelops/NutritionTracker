@@ -14,7 +14,6 @@ export default class FoodRow extends React.Component {
    */
   constructor(props) {
     super(props);
-    console.log(this.props.searchedFood)
     // How to set initial state in ES6 class syntax
     // https://facebook.github.io/react/docs/reusable-components.html#es6-classes
     if (this.props.searchOrDaily){
@@ -32,6 +31,8 @@ export default class FoodRow extends React.Component {
       type: 'POST',
       data: {food: this.state.searchedFood, quantity: this.state.quantity},
     }).success(function(data){ 
+      window.location = "/home"
+
       //rails controller reroutes back to home
     });
   }
@@ -52,6 +53,7 @@ export default class FoodRow extends React.Component {
           type: 'PATCH',
           data: {food: this.state.searchedFood, quantity: event.target.value},
         }).success(function(data){
+          window.location = "/home"
           //rails controller reroutes back to home
         });
       }
@@ -71,7 +73,6 @@ export default class FoodRow extends React.Component {
     if (this.props.searchOrDaily){
       AddFoodButtonTemp = <input type="submit" value="Add" onClick={this.handleAddFood} />
     }
-
   	while (findingEnergy)
   	{
       if (i < Object.keys(this.state.searchedFood["nutrients"]).length){
@@ -102,10 +103,10 @@ export default class FoodRow extends React.Component {
     return (
 
 		<tr>  
-            <th scope="row">{this.state.searchedFood["name"]}</th>
-            <td><input type="text" value={this.state.quantity} onChange={this.quantityFieldUpdate} onKeyDown={this.quantityUpdate} /></td>
-            <td><Dropdown options={options} onChange={this._onSelect} value={defaultOption} placeholder="Select an option" /></td>
-            <td>{calories}</td>
+            <th className="name_cell"scope="row">{this.state.searchedFood["name"]}</th>
+            <td className="quantity_cell"><input type="text" value={this.state.quantity} onChange={this.quantityFieldUpdate} onKeyDown={this.quantityUpdate} /></td>
+            <td className="serving_size_cell"><Dropdown options={options} onChange={this._onSelect} value={defaultOption} placeholder="Select an option" /></td>
+            <td className="calories_cell">{calories}</td>
             {AddFoodButton}
         </tr>
     );

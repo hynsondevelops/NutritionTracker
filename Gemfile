@@ -42,7 +42,8 @@ gem "react_on_rails", "10.0.0"
 gem "webpacker", "~> 3.0"
 #for styling
 gem 'bootstrap', '~> 4.0.0'
-
+#Rspec for tesing
+gem 'rspec-rails'
 
 
 # Use Capistrano for deployment

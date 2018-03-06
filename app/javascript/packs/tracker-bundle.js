@@ -7,6 +7,7 @@ import FoodRow from '../bundles/Tracker/components/FoodRow';
 import DailyFoods from '../bundles/Tracker/components/DailyFoods';
 import Macronutrients from '../bundles/Tracker/components/Macronutrients';
 import Micronutrients from '../bundles/Tracker/components/Micronutrients';
+import PieChart from '../bundles/Tracker/components/PieChart';
 
 
 // This is how react_on_rails can see the HelloWorld in the browser.
@@ -18,5 +19,6 @@ ReactOnRails.register({
   DailyFoods,
   Macronutrients,
   Micronutrients,
+  PieChart,
 
 });

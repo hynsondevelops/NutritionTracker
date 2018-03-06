@@ -11,6 +11,33 @@
     "react-on-rails": "^10.1.1"
   },
   "devDependencies": {
+    "babel-jest": "^22.4.1",
+    "babel-preset-es2015": "^6.24.1",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-to-json": "^3.3.1",
+    "jest": "^22.4.2",
+    "react-test-renderer": "^16.2.0",
     "webpack-dev-server": "^2.11.1"
+  },
+  "jest": {
+    "roots": [
+      "spec/javascript"
+    ],
+    "setupFiles": [
+      "./spec/jestsetup.js"
+    ],
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
+    "moduleDirectories": [
+      "node_modules",
+      "app/javascript"
+    ]
+  },
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
   }
 }
