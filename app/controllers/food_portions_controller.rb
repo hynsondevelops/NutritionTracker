@@ -1,8 +1,13 @@
 class FoodPortionsController < ApplicationController
 	def create
 		@food = Food.create(name: params[:food][:name], data: params[:food])
-		@dailyDiet = DailyDiet.create(user_id: current_user.id)
 		@foodPortion = FoodPortion.create(food_id: @food.id, quantity: params[:quantity])
+		current_user.daily_diets.each do |daily|
+			if (daily.created_at.to_date == Time.now.to_date)
+				#found today's diet data
+				daily.food_portions.push(@foodPortion)
+			end
+		end
 		redirect_to controller: "foods", action: "home_page"
 	end
 

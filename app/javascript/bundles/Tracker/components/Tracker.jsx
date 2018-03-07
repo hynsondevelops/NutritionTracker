@@ -9,7 +9,8 @@ import Micronutrients from './Micronutrients';
 export default class Tracker extends React.Component {
   static propTypes = {
   	searchedFoods: PropTypes.array,
-    dailyDiet: PropTypes.array
+    dailyDiet: PropTypes.array,
+    day: PropTypes.string
   };
 
   /**
@@ -45,6 +46,7 @@ export default class Tracker extends React.Component {
 
     return (
       <div>
+        <h3> {this.props.day} </h3>
       	<div className="row">
   				  <FoodManager searchedFoods={this.props.searchedFoods} />
   		  </div>
