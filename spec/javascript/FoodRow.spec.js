@@ -8,8 +8,6 @@ import { shallow } from 'enzyme';
 
 
 describe('Component: FoodRow', () => {
-
-  it('should match its empty snapshot', () => {
   	const sampleObject = [
 	  {
 	    "ndbno": "23115",
@@ -3028,13 +3026,35 @@ describe('Component: FoodRow', () => {
 	    "food_id": 45,
 	    "food_portion_id": 14
 	  },
-	  "3.0"
+	  "1.0"
 	]
     const component = shallow(
       <FoodRow key={sampleObject["ndbno"]} searchedFood={sampleObject} searchOrDaily={false}/>
      )
 
-  	expect(component.find('.calories_cell').length).toEqual(1);
 
-  });
+    it('should have one name column', () => {
+    	
+    	expect(component.find('.name_cell').length).toEqual(1);
+
+    });
+
+    it('should have the food\'s name', () => {
+    	expect(component.find('.name_cell').text()).toEqual(sampleObject[0].name);
+    })
+
+	it('should have one calories column', () => {
+		
+		expect(component.find('.calories_cell').length).toEqual(1);
+
+	});
+
+	it('should have the food\'s calorie count', () => {
+		expect(component.find('.calories_cell').text()).toEqual(sampleObject[0].nutrients[1].value);
+	})
+
+	
+
+
+
 });

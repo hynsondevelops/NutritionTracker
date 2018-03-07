@@ -26,6 +26,7 @@ export default class FoodSelector extends React.Component {
 
 
     initialAjaxSuccess = (data) => {
+      console.log("initial")
         this.setState({searchedFoods: []})
         //no result found
         if (data.list == null){
@@ -65,6 +66,7 @@ export default class FoodSelector extends React.Component {
     }
 
     detailedAjaxSuccess = (data) => {
+      console.log("Detailed")
         this.setState({searchedFoods: this.state.searchedFoods.concat([data.report.food])})
 
     }
@@ -73,6 +75,7 @@ export default class FoodSelector extends React.Component {
 
 
     handleChange = (event) => {
+      console.log(event.target.value)
         this.setState({searchString: event.target.value});
         //making call to USDA database 
         let APIURL = ("https://api.nal.usda.gov/ndb/search/?format=json&q=" + event.target.value + "&sort=n&max=25&offset=0&api_key=hyMAaC37dIT57p36cBZ1Sn6tK5XYfnOLP4IaNSs7")
@@ -91,7 +94,7 @@ export default class FoodSelector extends React.Component {
       <form onSubmit={this.handleSubmit}>
         <label>
           Search:
-          <input type="text" value={this.state.value} onChange={this.handleChange} />
+          <input className="food_search" type="text" value={this.state.value} onChange={this.handleChange} />
         </label>
         <input type="submit" value="Submit" />
       </form>

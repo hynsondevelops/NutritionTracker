@@ -3634,6 +3634,10 @@ istanbul-reports@^1.1.4:
   dependencies:
     handlebars "^4.0.3"
 
+jest-canvas-mock@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/jest-canvas-mock/-/jest-canvas-mock-1.0.1.tgz#a3d4fe285b9858a712d0e184dbead401c1d3e775"
+
 jest-changed-files@^22.2.0:
   version "22.2.0"
   resolved "https://registry.yarnpkg.com/jest-changed-files/-/jest-changed-files-22.2.0.tgz#517610c4a8ca0925bdc88b0ca53bd678aa8d019e"
