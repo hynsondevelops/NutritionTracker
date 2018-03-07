@@ -1,11 +1,15 @@
 class FoodsController < ApplicationController
 	def home_page
-		dailyFoods = []
-		dailyFoodPortions = FoodPortion.all
-		dailyFoodPortions.each do |portion|
-			dailyFoods.push([portion.food, portion.quantity, portion.id])
+		if (user_signed_in?)
+			dailyFoods = []
+			dailyFoodPortions = FoodPortion.all
+			dailyFoodPortions.each do |portion|
+				dailyFoods.push([portion.food, portion.quantity, portion.id])
+			end
+			@tracker_props = {dailyDiet: dailyFoods}
+		else
+			redirect_to controller: "devise/sessions", action: "new"
 		end
-		@tracker_props = {dailyDiet: dailyFoods}
 
 	end
 	def create
