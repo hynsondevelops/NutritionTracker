@@ -44,6 +44,8 @@ gem "webpacker", "~> 3.0"
 gem 'bootstrap', '~> 4.0.0'
 #Rspec for tesing
 gem 'rspec-rails'
+#devise for users
+gem 'devise'
 
 
 # Use Capistrano for deployment
